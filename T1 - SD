@@ -1,0 +1,25 @@
+module Value(
+	input clk,
+	output on
+);
+
+	assign on = clk;
+
+endmodule
+
+module test;
+
+	reg clk;
+	wire on;
+
+	Value Start(clk, on);
+	always #2 clk = ~clk;
+
+  	initial begin
+    	$dumpvars(0, Start);
+    	clk <= 1'b1;
+    	#20;
+    	$finish;
+	end
+
+endmodule
